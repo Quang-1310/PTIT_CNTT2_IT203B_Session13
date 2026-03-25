@@ -66,3 +66,21 @@ public class Main {
         }while(choice != 3);
     }
 }
+
+
+/*
+1. Phân tích Rủi ro & Bẫy lỗi
+Kịch bản 1: Sai lệch dữ liệu giữa các bảng
+Kịch bản 2: Nhập sai kiểu dữ liệu gây treo ứng dụng
+Kịch bản 3: Thao tác trên dữ liệu không tồn tại
+
+2.Thiết kế Kiến trúc
+Mở kết nối: Gọi DatabaseHelper.getConnection().
+Tắt tự động lưu: conn.setAutoCommit(false).
+Thực thi liên hoàn:
+INSERT thông tin bệnh nhân mới.
+UPDATE bảng giường: Chuyển trạng thái từ 'Trống' sang 'Đã có người'.
+INSERT số tiền vào bảng tài chính (ví dụ: patient_wallets).
+Xác nhận: Nếu 3 lệnh trên chạy không lỗi, gọi conn.commit().
+Hủy bỏ: Nếu bất kỳ bước nào bắn ra SQLException, gọi conn.rollback() trong khối catch để đưa Database về trạng thái sạch ban đầu.
+ */
